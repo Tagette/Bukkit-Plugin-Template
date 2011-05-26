@@ -1,8 +1,8 @@
-package me.<Your Name>.<Plugin Name>.extras;
+package me.tagette.template.extras;
 
 import java.io.*;
 import java.util.*;
-import me.<Your Name>.<Plugin Name>.TLogger;
+import me.tagette.template.TLogger;
 
 /**
  * @description Manipulates a properties file

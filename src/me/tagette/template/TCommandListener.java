@@ -1,4 +1,4 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -7,27 +7,27 @@ import org.bukkit.entity.Player;
 
 /**
  * @description Handles player commands
- * @author <Your Name>
+ * @author Tagette
  */
 public class TCommandListener implements CommandExecutor {
 
-    private final <Plugin Name> plugin;
+    private final Template plugin;
 
-    public TCommandListener(<Plugin Name> instance) {
+    public TCommandListener(Template instance) {
         plugin = instance;
     }
 
     public void initialize(TCommandListener instance) {
-        plugin.getCommand("<Plugin Name>").setExecutor(instance);
+        plugin.getCommand("template").setExecutor(instance);
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         boolean handled = false;
-        if (is(label, <Plugin Name>.name)) {
+        if (is(label, Template.name)) {
             if (args == null || args.length == 0) {
                 handled = true;
-                sendMessage(sender, "You are using " + <Plugin Name>.name + " version " + <Plugin Name>.version + ".");
+                sendMessage(sender, "You are using " + Template.name + " version " + Template.version + ".");
             } else {
                 // Put your commands in here
                 if (is(args[0], "nuke")) {
@@ -43,7 +43,7 @@ public class TCommandListener implements CommandExecutor {
                     }
                 } else if (is(args[0], "getawesome")) {
                     handled = true;
-                    if (isPlayer(sender) && TPermissions.permission(getPlayer(sender), "<Plugin Name>.awesomeness", getPlayer(sender).isOp())) {
+                    if (isPlayer(sender) && TPermissions.permission(getPlayer(sender), "template.awesomeness", getPlayer(sender).isOp())) {
                         if (args.length == 1) {
                             String name = getName(sender);
                             int awesomeness = TDatabase.dbm.getIntByName("awesomeness", name);
@@ -68,7 +68,7 @@ public class TCommandListener implements CommandExecutor {
                     }
                 } else if (is(args[0], "setawesome")) {
                     handled = true;
-                    if (isPlayer(sender) && TPermissions.permission(getPlayer(sender), "<Plugin Name>.awesomeness.set", getPlayer(sender).isOp())) {
+                    if (isPlayer(sender) && TPermissions.permission(getPlayer(sender), "template.awesomeness.set", getPlayer(sender).isOp())) {
                         if (args.length == 2) {
                             String name = getName(sender);
                             if (TTools.isInt(args[1])) {
@@ -95,7 +95,7 @@ public class TCommandListener implements CommandExecutor {
                     sendMessage(sender, "No help yet.");
                 } else {
                     handled = true;
-                    sendMessage(sender, "Unknown " + <Plugin Name>.name + " command " + label + ".");
+                    sendMessage(sender, "Unknown " + Template.name + " command " + label + ".");
                 }
             }
         }

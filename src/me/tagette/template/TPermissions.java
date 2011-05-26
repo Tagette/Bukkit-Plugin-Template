@@ -1,4 +1,4 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import com.nijikokun.bukkit.Permissions.Permissions;
 import org.anjocaido.groupmanager.GroupManager;
@@ -7,7 +7,7 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * @description Handles all plugin permissions
- * @author <Your Name>
+ * @author Tagette
  */
 public class TPermissions {
 
@@ -17,9 +17,9 @@ public class TPermissions {
     }
     private static PermissionHandler handler;
     public static Plugin PermissionPlugin;
-    private static <Plugin Name> plugin;
+    private static Template plugin;
 
-    public static void initialize(<Plugin Name> instance) {
+    public static void initialize(Template instance) {
         TPermissions.plugin = instance;
         Plugin iConomy = plugin.getServer().getPluginManager().getPlugin("iConomy");
         Plugin GroupManager = plugin.getServer().getPluginManager().getPlugin("GroupManager");

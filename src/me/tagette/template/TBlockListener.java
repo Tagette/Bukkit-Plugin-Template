@@ -1,4 +1,4 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockListener;
@@ -6,13 +6,13 @@ import org.bukkit.event.block.SignChangeEvent;
 
 /**
  * @decsription Handles all block related events
- * @author <Your Name>
+ * @author Tagette
  */
 public class TBlockListener extends BlockListener {
 
-    private final <Plugin Name> plugin;
+    private final Template plugin;
 
-    public TBlockListener(final <Plugin Name> plugin) {
+    public TBlockListener(final Template plugin) {
         this.plugin = plugin;
     }
 

@@ -1,4 +1,4 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import java.util.HashMap;
 import java.util.logging.Logger;
@@ -9,10 +9,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 
 /**
- * @description Main class for <Plugin Name> plugin for Bukkit
- * @author <Your Name>
+ * @description Main class for Template plugin for Bukkit
+ * @author Tagette
  */
-public class <Plugin Name> extends JavaPlugin {
+public class Template extends JavaPlugin {
 
     private final TPlayerListener playerListener = new TPlayerListener(this);
     private final TBlockListener blockListener = new TBlockListener(this);
@@ -57,7 +57,7 @@ public class <Plugin Name> extends JavaPlugin {
     }
     
     private void setupCommands() {
-        getCommand("<Plugin Name>").setExecutor(cmder);
+        getCommand("template").setExecutor(cmder);
     }
 
     @Override

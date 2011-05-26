@@ -1,12 +1,12 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
-import me.<Your Name>.<Plugin Name>.extras.PropertiesFile;
+import me.tagette.template.extras.PropertiesFile;
 import java.io.File;
 import org.bukkit.plugin.Plugin;
 
 /**
  * @description Handles property files
- * @author <Your Name>
+ * @author Tagette
  */
 public class TSettings {
 
@@ -14,9 +14,9 @@ public class TSettings {
     // Add settings here
     public static int maxNukes;
     public static boolean adminsObeyLimits;
-    private static <Plugin Name> plugin;
+    private static Template plugin;
 
-    public static void initialize(<Plugin Name> instance) {
+    public static void initialize(Template instance) {
         TSettings.plugin = instance;
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdirs();

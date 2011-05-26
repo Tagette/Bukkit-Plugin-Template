@@ -1,20 +1,20 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import com.alta189.sqllitelib.SQLCore;
-import me.<Your Name>.<Plugin Name>.extras.DataField;
-import me.<Your Name>.<Plugin Name>.extras.DataField.DataFieldType;
-import me.<Your Name>.<Plugin Name>.extras.DataManager;
+import me.tagette.template.extras.DataField;
+import me.tagette.template.extras.DataField.DataFieldType;
+import me.tagette.template.extras.DataManager;
 
 /**
  * @description Handles sqllite database connection
- * @author <Your Name>
+ * @author Tagette
  */
 public class TDatabase {
     
-    private static <Plugin Name> plugin;
+    private static Template plugin;
     public static DataManager dbm;
     
-    public static void initialize(<Plugin Name> instance){
+    public static void initialize(Template instance){
         TDatabase.plugin = instance;
         dbm = new DataManager(plugin);
         

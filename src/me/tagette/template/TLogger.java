@@ -1,11 +1,11 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * @description Handles the logging of the plugin
- * @author <Your Name>
+ * @author Tagette
  */
 public class TLogger {
 
@@ -14,7 +14,7 @@ public class TLogger {
 
     public static void initialize(Logger newLog) {
         TLogger.log = newLog;
-        prefix = "[" + <Plugin Name>.name + "] ";
+        prefix = "[" + Template.name + "] ";
     }
 
     public static Logger getLog() {

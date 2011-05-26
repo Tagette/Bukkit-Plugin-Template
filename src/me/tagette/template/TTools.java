@@ -1,10 +1,10 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import org.bukkit.Material;
 
 /**
  * @description Useful tools
- * @author <Your Name>
+ * @author Tagette
  */
 public class TTools {
 

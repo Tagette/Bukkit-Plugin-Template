@@ -1,13 +1,13 @@
-name: <Plugin Name>
-author: <Your Name>
-main: me.<Your Name>.<Plugin Name>.<Plugin Name>
+name: Template
+author: Tagette
+main: me.tagette.template.Template
 version: 1.0
 database: false
 description: >
-             A <Plugin Name> plugin for Bukkit.
+             A template plugin for Bukkit.
 
 commands:
-  <Plugin Name>:
+  template:
     description: Shows the version of the plugin.
     usage: |
            You typed the command incorrectly.

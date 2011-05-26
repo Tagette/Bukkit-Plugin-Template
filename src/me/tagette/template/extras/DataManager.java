@@ -1,28 +1,28 @@
-package me.<Your Name>.<Plugin Name>.extras;
+package me.tagette.template.extras;
 
 import com.alta189.sqllitelib.SQLCore;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import me.<Your Name>.<Plugin Name>.TLogger;
-import me.<Your Name>.<Plugin Name>.<Plugin Name>;
-import me.<Your Name>.<Plugin Name>.extras.DataField.DataFieldType;
+import me.tagette.template.TLogger;
+import me.tagette.template.Template;
+import me.tagette.template.extras.DataField.DataFieldType;
 
 /**
  * @description Handles sqllite database connection
- * @author <Your Name>
+ * @author Tagette
  */
 public class DataManager {
 
-    private <Plugin Name> plugin;
+    private Template plugin;
     private SQLCore dbCore;
     private String selectedTable;
     private String lastRetrievedTable;
     private ResultSet lastDataRetrieved;
     private String playerFieldName;
 
-    public DataManager(<Plugin Name> instance) {
+    public DataManager(Template instance) {
         plugin = instance;
-        dbCore = new SQLCore(TLogger.getLog(), TLogger.getPrefix(), <Plugin Name>.name,
+        dbCore = new SQLCore(TLogger.getLog(), TLogger.getPrefix(), Template.name,
                 plugin.getDataFolder().getPath() + "/Data");
         dbCore.initialize();
         selectedTable = "";

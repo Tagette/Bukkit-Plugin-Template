@@ -1,4 +1,4 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import org.bukkit.block.Block;
 import org.bukkit.event.block.Action;
@@ -7,13 +7,13 @@ import org.bukkit.event.player.PlayerListener;
 
 /**
  * @description Handles all player related events
- * @author <Your Name>
+ * @author Tagette
  */
 public class TPlayerListener extends PlayerListener {
 
-    private final <Plugin Name> plugin;
+    private final Template plugin;
 
-    public TPlayerListener(<Plugin Name> instance) {
+    public TPlayerListener(Template instance) {
         plugin = instance;
     }
 

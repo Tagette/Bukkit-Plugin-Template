@@ -1,4 +1,4 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import com.nijikokun.register.payment.Method;
 import com.nijikokun.register.payment.Methods;
@@ -6,7 +6,7 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * @description Handles economics of plugin
- * @author <Your Name>
+ * @author Tagette
  */
 public class TEconomy {
 

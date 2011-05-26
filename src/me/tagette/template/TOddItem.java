@@ -1,4 +1,4 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import info.somethingodd.bukkit.OddItem.OddItem;
 import java.util.Iterator;
@@ -9,16 +9,16 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * @description Unified custom items list and parser
- * @author <Your Name>
+ * @author Tagette
  */
 public class TOddItem {
 
     public static OddItem OddItem;
     public static String name;
     public static String version;
-    private static <Plugin Name> plugin;
+    private static Template plugin;
 
-    public static void initialize(<Plugin Name> instance) {
+    public static void initialize(Template instance) {
         TOddItem.plugin = instance;
         OddItem = (OddItem) plugin.getServer().getPluginManager().getPlugin("OddItem");
         if (OddItem != null) {

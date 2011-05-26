@@ -1,4 +1,4 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
@@ -6,13 +6,13 @@ import org.bukkit.event.server.ServerListener;
 
 /**
  * @description Handles enabling plugins
- * @author <Your Name>
+ * @author Tagette
  */
 public class TPluginListener extends ServerListener {
 
-    private final <Plugin Name> plugin;
+    private final Template plugin;
 
-    public TPluginListener(<Plugin Name> instance) {
+    public TPluginListener(Template instance) {
         plugin = instance;
         TEconomy.initialize();
     }

@@ -1,6 +1,7 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
 import com.griefcraft.lwc.LWC;
+import com.griefcraft.lwc.LWCPlugin;
 import com.griefcraft.model.Protection;
 import com.griefcraft.model.ProtectionTypes;
 import org.bukkit.block.Block;
@@ -9,17 +10,17 @@ import org.yi.acru.bukkit.Lockette.Lockette;
 
 /**
  * @description Handles block and item protection
- * @author <Your Name>
+ * @author Tagette
  */
 public class TProtection {
 
     public static LWC lwc = null;
     public static Lockette lockette = null;
-    private static <Plugin Name> plugin;
+    private static Template plugin;
 
-    public static void initialize(<Plugin Name> instance) {
+    public static void initialize(Template instance) {
         TProtection.plugin = instance;
-        lwc = (LWC) plugin.getServer().getPluginManager().getPlugin("LWC");
+        lwc = ((LWCPlugin) plugin.getServer().getPluginManager().getPlugin("LWC")).getLWC();
         lockette = (Lockette) plugin.getServer().getPluginManager().getPlugin("Lockette");
         if (lwc != null) {
             TLogger.info("LWC has be hooked into.");
@@ -32,7 +33,7 @@ public class TProtection {
     public static void onEnable(Plugin plugin) {
         String pluginName = plugin.getDescription().getName();
         if (pluginName.equals("LWC") && lwc == null) {
-            lwc = (LWC) plugin;
+            lwc = ((LWCPlugin) plugin).getLWC();
             TLogger.info("LWC has be hooked into.");
         }
         if (pluginName.equals("Lockette") && lockette == null) {

@@ -1,4 +1,4 @@
-package me.<Your Name>.<Plugin Name>.extras;
+package me.tagette.template.extras;
 
 /**
  *

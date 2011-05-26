@@ -1,6 +1,6 @@
-package me.<Your Name>.<Plugin Name>;
+package me.tagette.template;
 
-import me.<Your Name>.<Plugin Name>.extras.PropertiesFile;
+import me.tagette.template.extras.PropertiesFile;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +13,9 @@ public class TLanguage {
 
     private static final String settingsFile = "Language.properties";
     private static Map<String, String> languages;
-    private static <Plugin Name> plugin;
+    private static Template plugin;
 
-    public static void initialize(<Plugin Name> instance) {
+    public static void initialize(Template instance) {
         TLanguage.plugin = instance;
         languages = new HashMap<String, String>();
         if (!plugin.getDataFolder().exists()) {
