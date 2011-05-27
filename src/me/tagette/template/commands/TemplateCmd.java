@@ -164,7 +164,7 @@ public class TemplateCmd implements CommandExecutor {
         for (String s : split) {
             joined += s + delimiter;
         }
-        joined = joined.substring(0, joined.length() - (delimiter.length() + 1));
+        joined = joined.substring(0, joined.length() - (delimiter.length()));
         return joined;
     }
 }

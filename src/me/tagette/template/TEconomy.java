@@ -22,8 +22,7 @@ public class TEconomy {
         if (!TEconomy.Methods.hasMethod()) {
             if (TEconomy.Methods.setMethod(plugin)) {
                 TEconomy.Economy = TEconomy.Methods.getMethod();
-                TLogger.info("Payment method found ("
-                        + TEconomy.Economy.getName() + " version: " + TEconomy.Economy.getVersion() + ")");
+                TLogger.info(TEconomy.Economy.getName() + " version " + TEconomy.Economy.getVersion() + " loaded.");
             }
         }
     }

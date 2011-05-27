@@ -45,36 +45,34 @@ public class Template extends JavaPlugin {
         // Settings
         TSettings.initialize(this);
         TLanguage.initialize(this);
-        
+
         // Database
         TDatabase.initialize(this);
-        
+
         // Supported plugins
         THelp.initialize(this);
         TOddItem.initialize(this);
         TPermissions.initialize(this);
         TProtection.initialize(this);
-        
+
         // Commands
         setupCommands();
-        
+
         TLogger.info(name + " version " + version + " is enabled!");
     }
-    
+
     private void setupCommands() {
         // Add command labels here.
         // For example in "/basic version" and "/basic reload" the label for both is "basic".
         // Make your commands in the template.commands package. Each command is a seperate class.
-        // ## For the command to work it must be in the plugin.yml! ##
-        // Look in the plugin.yml for the example.
         addCommand("template", new TemplateCmd(this));
     }
-    
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         return commandManager.dispatch(sender, cmd, label, args);
     }
-    
+
     private void addCommand(String command, CommandExecutor executor) {
         getCommand("template").setExecutor(executor);
         commandManager.addCommand(command, executor);

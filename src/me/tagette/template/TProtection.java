@@ -20,13 +20,14 @@ public class TProtection {
 
     public static void initialize(Template instance) {
         TProtection.plugin = instance;
-        lwc = ((LWCPlugin) plugin.getServer().getPluginManager().getPlugin("LWC")).getLWC();
+        LWCPlugin lwcPlugin = (LWCPlugin) plugin.getServer().getPluginManager().getPlugin("LWC");
+        lwc = lwcPlugin.getLWC();
         lockette = (Lockette) plugin.getServer().getPluginManager().getPlugin("Lockette");
         if (lwc != null) {
-            TLogger.info("LWC has be hooked into.");
+            TLogger.info("LWC version " + lwcPlugin.getDescription().getVersion() + " loaded.");
         }
         if (lockette != null) {
-            TLogger.info("Lockette has be hooked into.");
+            TLogger.info("Lockette version " + lockette.getDescription().getVersion() + " loaded.");
         }
     }
 
@@ -34,11 +35,11 @@ public class TProtection {
         String pluginName = plugin.getDescription().getName();
         if (pluginName.equals("LWC") && lwc == null) {
             lwc = ((LWCPlugin) plugin).getLWC();
-            TLogger.info("LWC has be hooked into.");
+            TLogger.info("LWC version " + plugin.getDescription().getVersion() + " loaded.");
         }
         if (pluginName.equals("Lockette") && lockette == null) {
             lockette = (Lockette) plugin;
-            TLogger.info("Lockette has be hooked into.");
+            TLogger.info("Lockette version " + plugin.getDescription().getVersion() + " loaded.");
         }
     }
 
