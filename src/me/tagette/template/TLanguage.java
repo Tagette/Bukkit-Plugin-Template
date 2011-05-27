@@ -17,6 +17,10 @@ public class TLanguage {
 
     public static void initialize(Template instance) {
         TLanguage.plugin = instance;
+        load();
+    }
+    
+    public static void load(){
         languages = new HashMap<String, String>();
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdirs();
@@ -28,6 +32,17 @@ public class TLanguage {
 
         File configFile = new File(plugin.getDataFolder(), settingsFile);
         PropertiesFile file = new PropertiesFile(configFile);
+
+        setup(file);
+        
+        if(file.save()){
+            TLogger.info("Language file created.");
+        } else {
+            TLogger.info("Language loaded.");
+        }
+    }
+    
+    public static void setup(PropertiesFile file){
         String key = "";
         String value = "";
         String comment = "";
@@ -50,12 +65,6 @@ public class TLanguage {
         value = "Ha.. your not admin. You can only have lil' bit o' nukes... noob.";
         comment = "Message displayed when a normal player types the nuke command.";
         languages.put(key, file.getString(key, value, comment));
-
-        if(file.save()){
-            TLogger.info("Language file created.");
-        } else {
-            TLogger.info("Language loaded.");
-        }
     }
 
     public static String getLanguage(String key) {

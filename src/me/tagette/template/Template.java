@@ -1,7 +1,12 @@
 package me.tagette.template;
 
+import me.tagette.template.extras.CommandManager;
 import java.util.HashMap;
 import java.util.logging.Logger;
+import me.tagette.template.commands.*;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
@@ -17,7 +22,7 @@ public class Template extends JavaPlugin {
     private final TPlayerListener playerListener = new TPlayerListener(this);
     private final TBlockListener blockListener = new TBlockListener(this);
     private final TPluginListener pluginListener = new TPluginListener(this);
-    private final TCommandListener cmder = new TCommandListener(this);
+    private final CommandManager commandManager = new CommandManager(this);
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     public static String name;
     public static String version;
@@ -57,7 +62,22 @@ public class Template extends JavaPlugin {
     }
     
     private void setupCommands() {
-        getCommand("template").setExecutor(cmder);
+        // Add command labels here.
+        // For example in "/basic version" and "/basic reload" the label for both is "basic".
+        // Make your commands in the template.commands package. Each command is a seperate class.
+        // ## For the command to work it must be in the plugin.yml! ##
+        // Look in the plugin.yml for the example.
+        addCommand("template", new TemplateCmd(this));
+    }
+    
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        return commandManager.dispatch(sender, cmd, label, args);
+    }
+    
+    private void addCommand(String command, CommandExecutor executor) {
+        getCommand("template").setExecutor(executor);
+        commandManager.addCommand(command, executor);
     }
 
     @Override

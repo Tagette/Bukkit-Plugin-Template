@@ -8,7 +8,9 @@ description: >
 
 commands:
   template:
-    description: Shows the version of the plugin.
+    # Class is required for command to work
+    class: me.tagette.template.commands.TemplateCmd
+    description: Handles the commands of the plugin.
     usage: |
            You typed the command incorrectly.
            For help type /<command> help.

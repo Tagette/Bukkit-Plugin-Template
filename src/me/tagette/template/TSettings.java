@@ -18,6 +18,10 @@ public class TSettings {
 
     public static void initialize(Template instance) {
         TSettings.plugin = instance;
+        load();
+    }
+    
+    public static void load(){
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdirs();
         }
@@ -29,6 +33,17 @@ public class TSettings {
 
         File configFile = new File(plugin.getDataFolder(), settingsFile);
         PropertiesFile file = new PropertiesFile(configFile);
+
+        setup(file);
+        
+        if(file.save()){
+            TLogger.info("Settings file created.");
+        } else {
+            TLogger.info("Settings loaded.");
+        }
+    }
+    
+    private static void setup(PropertiesFile file){
         // Declare settings here. Note that if config is not found these values should be placed into a new config file.
 
         // This will show in file as: "  ###  Nukes!  ###  " (without quotes) with a extra line above and below.
@@ -37,11 +52,5 @@ public class TSettings {
         // Note the settings file will be filled with these default values if it doesn't exist.
         maxNukes = file.getInt("maxNukes", 10, "Maximum number of nukes any player can use.");
         adminsObeyLimits = file.getBoolean("adminsObeyLimits", false, "Whether or not admins can disobey nuke limits.");
-
-        if(file.save()){
-            TLogger.info("Settings file created.");
-        } else {
-            TLogger.info("Settings loaded.");
-        }
     }
 }

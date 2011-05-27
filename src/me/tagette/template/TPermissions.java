@@ -21,12 +21,12 @@ public class TPermissions {
 
     public static void initialize(Template instance) {
         TPermissions.plugin = instance;
-        Plugin iConomy = plugin.getServer().getPluginManager().getPlugin("iConomy");
+        Plugin Permissions = plugin.getServer().getPluginManager().getPlugin("Permissions");
         Plugin GroupManager = plugin.getServer().getPluginManager().getPlugin("GroupManager");
         handler = PermissionHandler.NONE;
 
-        if (iConomy != null) {
-            PermissionPlugin = iConomy;
+        if (Permissions != null) {
+            PermissionPlugin = Permissions;
             handler = PermissionHandler.PERMISSIONS;
             String version = PermissionPlugin.getDescription().getVersion();
             TLogger.info("Permissions enabled using: Permissions v" + version + ".");
