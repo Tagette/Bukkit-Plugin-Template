@@ -26,7 +26,11 @@ public class Template extends JavaPlugin {
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     public static String name;
     public static String version;
+    public static boolean debugging;
 
+    /*
+     * This method runs when the plugin is enabled.
+     */
     @Override
     public void onEnable() {
         name = this.getDescription().getName();
@@ -61,6 +65,9 @@ public class Template extends JavaPlugin {
         TLogger.info(name + " version " + version + " is enabled!");
     }
 
+    /*
+     * Sets up the core commands of the plugin.
+     */
     private void setupCommands() {
         // Add command labels here.
         // For example in "/basic version" and "/basic reload" the label for both is "basic".
@@ -68,22 +75,44 @@ public class Template extends JavaPlugin {
         addCommand("template", new TemplateCmd(this));
     }
 
+    /*
+     * Executes a command when a command event is received.
+     * 
+     * @param sender    The thing that sent the command.
+     * @param cmd       The complete command object.
+     * @param label     The label of the command.
+     * @param args      The arguments of the command.
+     */
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         return commandManager.dispatch(sender, cmd, label, args);
     }
 
+    /*
+     * Adds the specified command to the command manager and server.
+     * 
+     * @param command   The label of the command.
+     * @param executor  The command class that excecutes the command.
+     */
     private void addCommand(String command, CommandExecutor executor) {
         getCommand("template").setExecutor(executor);
         commandManager.addCommand(command, executor);
     }
 
+    /*
+     * This method runs when the plugin is disabling.
+     */
     @Override
     public void onDisable() {
         TDatabase.disable();
         TLogger.info(name + " disabled.");
     }
 
+    /*
+     * Checks if a player is in debug mode.
+     * 
+     * @param player    The player to check.
+     */
     public boolean isDebugging(final Player player) {
         if (debugees.containsKey(player)) {
             return debugees.get(player);
@@ -92,6 +121,12 @@ public class Template extends JavaPlugin {
         }
     }
 
+    /*
+     * Sets a players debug mode.
+     * 
+     * @param player    The player to set the debug mode of.
+     * @param value     The boolean value to set the players debug mode to.
+     */
     public void setDebugging(final Player player, final boolean value) {
         debugees.put(player, value);
     }

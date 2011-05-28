@@ -9,3 +9,18 @@ Setup:
 
 Credits:
 Read credits.txt
+
+ChangeLog:
+* May 28 - Added plugin debug mode command. (Currently only debugs SQL) (1.1.0)
+* May 28 - More minor code changes. (1.1.0)
+* May 28 - Fixed SQLite (1.1.0)
+* May 28 - Added MySQL Support (Alta189's SQL Lib) (1.1.0)
+* May 28 - Removed useless code & Tidied up code (1.0.9)
+* May 27 - Changed how to setup. (1.0.8)
+* May 27 - New Command System (1.0.7)
+* May 27 - Permissions Fix (1.0.6)
+* May 25 - Download changed. (1.0.5)
+* May 25 - Changed how to setup. (1.0.4)
+* May 25 - LWC error fixed. (1.0.3)
+* May 25 - GitHub enabled. (1.0.2)
+* May 25 - Released. (1.0.1)

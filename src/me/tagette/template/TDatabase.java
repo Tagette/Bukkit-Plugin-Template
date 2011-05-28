@@ -1,12 +1,13 @@
 package me.tagette.template;
 
-import com.alta189.sqllitelib.SQLCore;
+import com.alta189.sqlLibrary.SQL.SQLCore;
+import com.alta189.sqlLibrary.SQL.SQLCore.SQLMode;
 import me.tagette.template.extras.DataField;
 import me.tagette.template.extras.DataField.DataFieldType;
 import me.tagette.template.extras.DataManager;
 
 /**
- * @description Handles sqllite database connection
+ * @description Handles SQL database connection
  * @author Tagette
  */
 public class TDatabase {
@@ -14,9 +15,19 @@ public class TDatabase {
     private static Template plugin;
     public static DataManager dbm;
     
+    /*
+     * Initializes the plugins database connection.
+     * 
+     * @param instance  An instance of the plugin's main class.
+     */
     public static void initialize(Template instance){
         TDatabase.plugin = instance;
-        dbm = new DataManager(plugin);
+        SQLMode dataMode;
+        if(TSettings.useMySQL)
+            dataMode = SQLMode.MySQL;
+        else
+            dataMode = SQLMode.SQLite;
+        dbm = new DataManager(plugin, dataMode);
         
         // Create database here
         
@@ -39,7 +50,7 @@ public class TDatabase {
             TLogger.info("Field created in table " + dbm.getSelectedTable() + ". (awesomeness)");
         // A new custom field with the field name of "custom", the default value
         //   of "Oh hai!", the max length of 7, 0 decimals, null is allowed, and the field type of TEXT.
-        DataField custom = new DataField("custom", "Oh hai!", 7, 0, true, 
+        DataField custom = new DataField("custom", null, 7, 0, true, 
                 DataFieldType.TEXT);
         if(dbm.addTableField(custom))
             TLogger.info("Field created in table " + dbm.getSelectedTable() + ". (custom)");
@@ -48,13 +59,17 @@ public class TDatabase {
         //   using the DataManager is in the CommandListenerClass
     }
     
-    // Closes the connection to the database
+    /*
+     * Closes the connection to the database.
+     */
     public static void disable(){
         dbm.getDbCore().close();
     }
     
-    // Gets the Database core
-    // Used for more advance databases.
+    /*
+     * Gets the Database core.
+     * Used for more advanced databasing. :)
+     */
     public static SQLCore getCore() {
         return dbm.getDbCore();
     }

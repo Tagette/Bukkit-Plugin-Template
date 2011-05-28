@@ -96,7 +96,16 @@ public class TemplateCmd implements CommandExecutor {
                         sendMessage(sender, "You do not have permission.");
                     }
 
-                } else if (is(args[0], "reload")) {
+                } else if (is(args[0], "debug")) {
+                    handled = true;
+                    if(isPlayer(sender) && TPermissions.isAdmin(getPlayer(sender))) {
+                        plugin.debugging = !plugin.debugging;
+                        if(plugin.debugging)
+                            sendMessage(sender, "Plugin has begun debugging.");
+                        else
+                            sendMessage(sender, "Plugin has stopped debugging.");
+                    }
+                }else if (is(args[0], "reload")) {
                     handled = true;
                     if(isPlayer(sender) && TPermissions.isAdmin(getPlayer(sender))) {
                         TSettings.load();
