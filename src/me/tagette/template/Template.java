@@ -95,7 +95,7 @@ public class Template extends JavaPlugin {
      * @param executor  The command class that excecutes the command.
      */
     private void addCommand(String command, CommandExecutor executor) {
-        getCommand("template").setExecutor(executor);
+        getCommand(command).setExecutor(executor);
         commandManager.addCommand(command, executor);
     }
 
