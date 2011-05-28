@@ -1,0 +1,14 @@
+name: Template
+author: Tagette
+main: me.tagette.template.Template
+version: 1.0.9
+database: false
+description: >
+             A template plugin for Bukkit.
+
+commands:
+  template:
+    description: Handles the commands of the plugin.
+    usage: |
+           You typed the command incorrectly.
+           For help type /<command> help.
