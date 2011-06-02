@@ -34,29 +34,16 @@ public class TDatabase {
         // -- Example --
         // This will create a table with the name "players".
         // No need to check if table or field already exists.
-        if(dbm.createTable("players"))
+        String tableQuery = "CREATE TABLE players ("
+                + "id INT(11) NOT NULL DEFAULT '0',"
+                + "name VARCHAR(30),"
+                + "awesomeness INT(11) DEFAULT '0',"
+                + "PRIMARY KEY (id))";
+        if(!dbm.tableExists("players") && dbm.createTable(tableQuery))
             TLogger.info("Table created. (players)");
-        // Must select table.
-        dbm.selectTable("players");
-        // The field called "name" is neccessary to use the get and set methods 
-        //   in the Datamanager Class.
-        // A new string field with the field name of "nickname", the default value 
-        //     of null, the max length of 15 and null is allowed.
-        if(dbm.addStringField("nickname", null, 15, true))
-            TLogger.info("Field created in table " + dbm.getSelectedTable() + ". (nickname)");
-        // A new integer field with the field name of "awesomeness", the default
-        //   value of 0, the max length of 11 and null is not allowed.
-        if(dbm.addIntField("awesomeness", 0, 11, false))
-            TLogger.info("Field created in table " + dbm.getSelectedTable() + ". (awesomeness)");
-        // A new custom field with the field name of "custom", the default value
-        //   of "Oh hai!", the max length of 7, 0 decimals, null is allowed, and the field type of TEXT.
-        DataField custom = new DataField("custom", null, 7, 0, true, 
-                DataFieldType.TEXT);
-        if(dbm.addTableField(custom))
-            TLogger.info("Field created in table " + dbm.getSelectedTable() + ". (custom)");
         
-        // An example on how to get and set data in the database 
-        //   using the DataManager is in the CommandListenerClass
+        // An example on how to get and set data in the database
+        //   using the DataManager is in the TemplateCmd Class
     }
     
     /*

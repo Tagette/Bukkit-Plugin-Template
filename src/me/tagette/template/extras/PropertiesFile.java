@@ -152,41 +152,24 @@ public class PropertiesFile {
         modified = true;
     }
 
-    public void createCategoryHeader(String header) {
-        if (!containsEntry(header)) {
-            addEntry(header.replaceAll("=", ""), "#", "");
-            modified = true;
-        }
-    }
-
-    public boolean save() {
-        boolean existed = true;
+    public void save() {
         if (modified) {
             BufferedWriter bwriter = null;
             FileWriter fwriter = null;
             try {
                 if (!file.exists()) {
                     file.createNewFile();
-                    existed = false;
                 }
                 fwriter = new FileWriter(file);
                 bwriter = new BufferedWriter(fwriter);
                 for (PropertyEntry entry : map) {
                     StringBuilder builder = new StringBuilder();
-                    if (!entry.value.equals("#")) {
-                        builder.append(entry.key);
-                        builder.append(" = ");
-                        builder.append(entry.value);
-                        if (!entry.comment.equals("")) {
-                            builder.append("   #");
-                            builder.append(entry.comment);
-                        }
-                    } else {
-                        // Category Seperator
-                        builder.append("  ###  ");
-                        builder.append(entry.key);
-                        builder.append("  ###  ");
-                        bwriter.newLine();
+                    builder.append(entry.key);
+                    builder.append(" = ");
+                    builder.append(entry.value);
+                    if (!entry.comment.equals("")) {
+                        builder.append("   #");
+                        builder.append(entry.comment);
                     }
                     bwriter.write(builder.toString());
                     bwriter.newLine();
@@ -208,7 +191,6 @@ public class PropertiesFile {
                 }
             }
         }
-        return existed;
     }
 
     private class PropertyEntry {

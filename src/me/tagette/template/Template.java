@@ -1,7 +1,8 @@
 package me.tagette.template;
 
+import java.util.ArrayList;
 import me.tagette.template.extras.CommandManager;
-import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Logger;
 import me.tagette.template.commands.*;
 import org.bukkit.command.Command;
@@ -18,15 +19,15 @@ import org.bukkit.plugin.PluginManager;
  * @author Tagette
  */
 public class Template extends JavaPlugin {
-
+    
     private final TPlayerListener playerListener = new TPlayerListener(this);
     private final TBlockListener blockListener = new TBlockListener(this);
     private final TPluginListener pluginListener = new TPluginListener(this);
     private final CommandManager commandManager = new CommandManager(this);
-    private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
+    private final List<Player> debugees = new ArrayList<Player>();
     public static String name;
     public static String version;
-    public static boolean debugging;
+    private static boolean debugging;
 
     /*
      * This method runs when the plugin is enabled.
@@ -57,7 +58,7 @@ public class Template extends JavaPlugin {
         THelp.initialize(this);
         TOddItem.initialize(this);
         TPermissions.initialize(this);
-        TProtection.initialize(this);
+        //TProtection.initialize(this);
 
         // Commands
         setupCommands();
@@ -70,7 +71,7 @@ public class Template extends JavaPlugin {
      */
     private void setupCommands() {
         // Add command labels here.
-        // For example in "/basic version" and "/basic reload" the label for both is "basic".
+        // For example in "/template version" and "/template reload" the label for both is "template".
         // Make your commands in the template.commands package. Each command is a seperate class.
         addCommand("template", new TemplateCmd(this));
     }
@@ -107,6 +108,13 @@ public class Template extends JavaPlugin {
         TDatabase.disable();
         TLogger.info(name + " disabled.");
     }
+    
+    /*
+     * Checks is the plugin is in debug mode.
+     */
+    public boolean inDebugMode(){
+        return !debugees.isEmpty() || debugging;
+    }
 
     /*
      * Checks if a player is in debug mode.
@@ -114,20 +122,31 @@ public class Template extends JavaPlugin {
      * @param player    The player to check.
      */
     public boolean isDebugging(final Player player) {
-        if (debugees.containsKey(player)) {
-            return debugees.get(player);
-        } else {
-            return false;
-        }
+        return debugees.contains(player);
     }
 
     /*
      * Sets a players debug mode.
      * 
      * @param player    The player to set the debug mode of.
-     * @param value     The boolean value to set the players debug mode to.
      */
-    public void setDebugging(final Player player, final boolean value) {
-        debugees.put(player, value);
+    public void startDebugging(final Player player) {
+        debugees.add(player);
+    }
+    
+    public void startDebugging() {
+        debugging = true;
+    }
+    
+    public void stopDebugging(final Player player) {
+        debugees.remove(player);
+    }
+    
+    public void stopDebugging() {
+        for(Player player : debugees) {
+            player.sendMessage("You are no longer in debug mode.");
+        }
+        debugees.clear();
+        debugging = false;
     }
 }

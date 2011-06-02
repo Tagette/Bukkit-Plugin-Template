@@ -13,9 +13,8 @@ public class TSettings {
     private static final String settingsFile = "Config.properties";
     private static Template plugin;
     // Add settings here
-    // Nukes
-    public static int maxNukes;
-    public static boolean adminsObeyLimits;
+    public static int lowestAwesome;
+    public static int highestAwesome;
     // Database
     public static boolean useMySQL;
     public static String MySQLHost;
@@ -42,26 +41,16 @@ public class TSettings {
         PropertiesFile file = new PropertiesFile(configFile);
 
         setup(file);
-
-        if (file.save()) {
-            TLogger.info("Settings file created.");
-        } else {
-            TLogger.info("Settings loaded.");
-        }
+        file.save();
+        TLogger.info("Settings loaded.");
     }
 
     private static void setup(PropertiesFile file) {
         // Declare settings here. Note that if config is not found these values should be placed into a new config file.
 
-        // This will show in file as: "  ###  Nukes!  ###  " (without quotes) with a extra line above and below.
-        file.createCategoryHeader("Nukes!");
-
         // Note the settings file will be filled with these default values if it doesn't exist.
-        maxNukes = file.getInt("maxNukes", 10, "Maximum number of nukes any player can use.");
-        adminsObeyLimits = file.getBoolean("adminsObeyLimits", false, "Whether or not admins can disobey nuke limits.");
-
-        // Database settings
-        file.createCategoryHeader("Database");
+        lowestAwesome = file.getInt("lowestAwesome", 0, "The lowest allowed awesome level.");
+        highestAwesome = file.getInt("highestAwesome", 100, "The highest allowed awesome level.");
 
         useMySQL = file.getBoolean("useMySQL", false, "If set to false, SQLite will be used instead.");
         MySQLHost = file.getString("host", "localhost", "The host of the MySQL database. Default: localhost");

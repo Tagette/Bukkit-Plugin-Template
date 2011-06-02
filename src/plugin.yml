@@ -1,7 +1,7 @@
 name: Template
 author: Tagette
 main: me.tagette.template.Template
-version: 1.0.9
+version: 1.1.1
 database: false
 description: >
              A template plugin for Bukkit.

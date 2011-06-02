@@ -71,6 +71,6 @@ public class TPermissions {
     }
 
     public static boolean isAdmin(Player player) {
-        return permission(player, "basic.admin", player.isOp());
+        return permission(player, "template.admin", player.isOp());
     }
 }

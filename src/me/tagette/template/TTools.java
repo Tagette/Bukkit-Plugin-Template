@@ -1,5 +1,7 @@
 package me.tagette.template;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import org.bukkit.Material;
 
 /**
@@ -7,6 +9,11 @@ import org.bukkit.Material;
  * @author Tagette
  */
 public class TTools {
+    
+    public static double round(double value, int decimals) {
+        BigDecimal bd = new BigDecimal(value).setScale(decimals, RoundingMode.HALF_EVEN);
+        return bd.doubleValue();
+    }
 
     public static boolean isInt(String i) {
         boolean is = false;
@@ -29,10 +36,10 @@ public class TTools {
     }
 
     // Gets the Material from bukkit enum
-    public static Material getMat(String name) {
+    public static Material getMatByName(String name) {
         Material mat = null;
         if (isInt(name)) {
-            mat = getMat(Integer.parseInt(name));
+            mat = getMatById(Integer.parseInt(name));
         } else {
             mat = Material.getMaterial(getMatID(name));
         }
@@ -40,7 +47,7 @@ public class TTools {
     }
 
     // Gets the Material from ID
-    public static Material getMat(int id) {
+    public static Material getMatById(int id) {
         return Material.getMaterial(id);
     }
 
@@ -62,5 +69,14 @@ public class TTools {
             matID = tmp.getId();
         }
         return matID;
+    }
+    
+    public static String join(String[] split, String delimiter) {
+        String joined = "";
+        for (String s : split) {
+            joined += s + delimiter;
+        }
+        joined = joined.substring(0, joined.length() - (delimiter.length()));
+        return joined;
     }
 }

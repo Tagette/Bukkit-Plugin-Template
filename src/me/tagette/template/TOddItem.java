@@ -48,9 +48,9 @@ public class TOddItem {
         dataValue = (dataValue > 30 || dataValue < 0 ? 0 : dataValue);
         Material mat;
         if (dataPosition != -1) {
-            mat = TTools.getMat(name.substring(0, dataPosition));
+            mat = TTools.getMatByName(name.substring(0, dataPosition));
         } else {
-            mat = TTools.getMat(name);
+            mat = TTools.getMatByName(name);
         }
         if (OddItem != null) {
             try {

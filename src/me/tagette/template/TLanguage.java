@@ -34,12 +34,8 @@ public class TLanguage {
         PropertiesFile file = new PropertiesFile(configFile);
 
         setup(file);
-        
-        if(file.save()){
-            TLogger.info("Language file created.");
-        } else {
-            TLogger.info("Language loaded.");
-        }
+        file.save();
+        TLogger.info("Language loaded.");
     }
     
     public static void setup(PropertiesFile file){
@@ -48,22 +44,9 @@ public class TLanguage {
         String comment = "";
         // Declare settings here. Note that if config is not found these values will be placed into a new config file.
 
-        // This will show in file as: "  ###  Nukes!  ###  " (without quotes) with a extra line above and below.
-        file.createCategoryHeader("Nukes!");
-
-        key = "nukeAdminWithLimits";
-        value = "HOLY CRAP UR ADMIN! You can only have lil' bit o' nukes... atleast your not a noob.";
-        comment = "Message displayed when an admin types the nuke command with limited nukes.";
-        languages.put(key, file.getString(key, value, comment));
-
-        key = "nukeAdminWithoutLimits";
-        value = "HOLY CRAP UR ADMIN! You can has so many nukes!.";
-        comment = "Message displayed when an admin types the nuke command without limited nukes.";
-        languages.put(key, file.getString(key, value, comment));
-
-        key = "nukeNonAdmin";
-        value = "Ha.. your not admin. You can only have lil' bit o' nukes... noob.";
-        comment = "Message displayed when a normal player types the nuke command.";
+        key = "noPermissions";
+        value = "You do not have permission.";
+        comment = "Message displayed when a user doesn't have permissions to do something.";
         languages.put(key, file.getString(key, value, comment));
     }
 

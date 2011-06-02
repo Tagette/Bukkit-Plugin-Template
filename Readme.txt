@@ -11,6 +11,9 @@ Credits:
 Read credits.txt
 
 ChangeLog:
+* June 2 - More minor code changes.
+* June 2 - Updated example commands. (1.1.1) [Added support for console commands]
+* June 2 - Removed Simplified Database (1.1.1) [Didn't actually simplify]
 * May 28 - Added plugin debug mode command. (Currently only debugs SQL) (1.1.0)
 * May 28 - More minor code changes. (1.1.0)
 * May 28 - Fixed SQLite (1.1.0)
