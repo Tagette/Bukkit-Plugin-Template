@@ -11,6 +11,7 @@ Credits:
 Read credits.txt
 
 ChangeLog:
+* June 18 - Updated Libraries and added LowDetailMode
 * June 2 - More minor code changes.
 * June 2 - Updated example commands. (1.1.1) [Added support for console commands]
 * June 2 - Removed Simplified Database (1.1.1) [Didn't actually simplify]
