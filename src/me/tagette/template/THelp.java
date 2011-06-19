@@ -17,7 +17,9 @@ public class THelp {
         helpPlugin = (Help) plugin.getServer().getPluginManager().getPlugin("Help");
         if (helpPlugin != null) {
             registerCommands();
-            TLogger.info("Help version " + helpPlugin.getDescription().getVersion() + " loaded.");
+            if (!TSettings.LowDetailMode) {
+                TLogger.info("Help version " + helpPlugin.getDescription().getVersion() + " loaded.");
+            }
         }
     }
 
@@ -26,13 +28,14 @@ public class THelp {
             if (plugin.getDescription().getName().equals("Help")) {
                 helpPlugin = (Help) plugin;
                 registerCommands();
-                TLogger.info("Help version " + helpPlugin.getDescription().getVersion() + " loaded.");
+                if (!TSettings.LowDetailMode) {
+                    TLogger.info("Help version " + helpPlugin.getDescription().getVersion() + " loaded.");
+                }
             }
         }
     }
-    
-    public static void load(){
-        
+
+    public static void load() {
     }
 
     public static void registerCommands() {

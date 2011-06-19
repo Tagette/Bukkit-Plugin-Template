@@ -29,12 +29,16 @@ public class TPermissions {
             PermissionPlugin = Permissions;
             handler = PermissionHandler.PERMISSIONS;
             String version = PermissionPlugin.getDescription().getVersion();
-            TLogger.info("Permissions version " + version + " loaded.");
+            if (!TSettings.LowDetailMode) {
+                TLogger.info("Permissions version " + version + " loaded.");
+            }
         } else if (GroupManager != null) {
             PermissionPlugin = GroupManager;
             handler = PermissionHandler.GROUP_MANAGER;
             String version = PermissionPlugin.getDescription().getVersion();
-            TLogger.info("GroupManager version " + version + " loaded.");
+            if (!TSettings.LowDetailMode) {
+                TLogger.info("GroupManager version " + version + " loaded.");
+            }
         }
     }
 
@@ -47,12 +51,16 @@ public class TPermissions {
                 PermissionPlugin = plugin;
                 handler = PermissionHandler.PERMISSIONS;
                 String version = plugin.getDescription().getVersion();
-            TLogger.info("Permissions version " + version + " loaded.");
+                if (!TSettings.LowDetailMode) {
+                    TLogger.info("Permissions version " + version + " loaded.");
+                }
             } else if (pluginName.equals("GroupManager")) {
                 PermissionPlugin = plugin;
                 handler = PermissionHandler.GROUP_MANAGER;
                 String version = plugin.getDescription().getVersion();
-            TLogger.info("GroupManager version " + version + " loaded.");
+                if (!TSettings.LowDetailMode) {
+                    TLogger.info("GroupManager version " + version + " loaded.");
+                }
             }
         }
     }

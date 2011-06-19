@@ -2,8 +2,6 @@ package me.tagette.template;
 
 import com.alta189.sqlLibrary.SQL.SQLCore;
 import com.alta189.sqlLibrary.SQL.SQLCore.SQLMode;
-import me.tagette.template.extras.DataField;
-import me.tagette.template.extras.DataField.DataFieldType;
 import me.tagette.template.extras.DataManager;
 
 /**

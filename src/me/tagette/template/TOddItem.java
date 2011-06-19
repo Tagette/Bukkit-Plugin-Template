@@ -24,7 +24,9 @@ public class TOddItem {
         if (OddItem != null) {
             name = OddItem.getDescription().getName();
             version = OddItem.getDescription().getVersion();
-            TLogger.info(name + " version " + version + " loaded.");
+            if (!TSettings.LowDetailMode) {
+                TLogger.info(name + " version " + version + " loaded.");
+            }
         }
     }
 
@@ -34,7 +36,9 @@ public class TOddItem {
                 OddItem = (OddItem) plugin;
                 name = OddItem.getDescription().getName();
                 version = OddItem.getDescription().getVersion();
-                TLogger.info(name + " version " + version + " loaded.");
+                if (!TSettings.LowDetailMode) {
+                    TLogger.info(name + " version " + version + " loaded.");
+                }
             }
         }
     }

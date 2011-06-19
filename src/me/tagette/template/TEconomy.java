@@ -30,7 +30,9 @@ public class TEconomy {
         if (!TEconomy.Methods.hasMethod()) {
             if (TEconomy.Methods.setMethod(plugin)) {
                 TEconomy.Economy = TEconomy.Methods.getMethod();
-                TLogger.info(TEconomy.Economy.getName() + " version " + TEconomy.Economy.getVersion() + " loaded.");
+                if (!TSettings.LowDetailMode) {
+                    TLogger.info(TEconomy.Economy.getName() + " version " + TEconomy.Economy.getVersion() + " loaded.");
+                }
             }
         }
     }

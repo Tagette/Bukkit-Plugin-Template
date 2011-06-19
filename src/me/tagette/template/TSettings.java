@@ -21,6 +21,7 @@ public class TSettings {
     public static String MySQLUser;
     public static String MySQLPass;
     public static String MySQLDBName;
+    public static boolean LowDetailMode;
 
     public static void initialize(Template instance) {
         TSettings.plugin = instance;
@@ -42,7 +43,9 @@ public class TSettings {
 
         setup(file);
         file.save();
-        TLogger.info("Settings loaded.");
+        if (!TSettings.LowDetailMode) {
+            TLogger.info("Settings loaded.");
+        }
     }
 
     private static void setup(PropertiesFile file) {
@@ -57,5 +60,7 @@ public class TSettings {
         MySQLUser = file.getString("user", "root", "The username to access the MySQL database with.");
         MySQLPass = file.getString("pass", "", "The password for the user.");
         MySQLDBName = file.getString("dbname", "", "The name of the database.");
+
+        LowDetailMode = file.getBoolean("lowDetailMode", false, "Displays less info when starting if true.");
     }
 }

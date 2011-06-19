@@ -58,7 +58,7 @@ public class Template extends JavaPlugin {
         THelp.initialize(this);
         TOddItem.initialize(this);
         TPermissions.initialize(this);
-        //TProtection.initialize(this);
+        TProtection.initialize(this);
 
         // Commands
         setupCommands();

@@ -196,6 +196,7 @@ public class TemplateCmd implements CommandExecutor {
                 } else if (is(args[0], "help") || is(args[0], "?")) {
                     handled = true;
                     sendMessage(sender, "No help yet.");
+                    sendLog(sender, "No help yet.");
                 } else {
                     handled = true;
                     sendMessage(sender, "Unknown " + Template.name + " command: /" + label + " " + TTools.join(args, " "));

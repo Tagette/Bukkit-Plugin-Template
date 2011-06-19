@@ -30,7 +30,7 @@ public class DataManager {
             dbCore = new SQLCore(TLogger.getLog(), TLogger.getPrefix(),
                     plugin.getDataFolder().getPath() + "/Data", Template.name);
         }
-        if (dbCore.initialize()) {
+        if (dbCore.initialize() && !TSettings.LowDetailMode) {
             TLogger.info("Database connection established.");
         }
     }

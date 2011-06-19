@@ -19,8 +19,8 @@ public class TLanguage {
         TLanguage.plugin = instance;
         load();
     }
-    
-    public static void load(){
+
+    public static void load() {
         languages = new HashMap<String, String>();
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdirs();
@@ -35,10 +35,12 @@ public class TLanguage {
 
         setup(file);
         file.save();
-        TLogger.info("Language loaded.");
+        if (!TSettings.LowDetailMode) {
+            TLogger.info("Language loaded.");
+        }
     }
-    
-    public static void setup(PropertiesFile file){
+
+    public static void setup(PropertiesFile file) {
         String key = "";
         String value = "";
         String comment = "";

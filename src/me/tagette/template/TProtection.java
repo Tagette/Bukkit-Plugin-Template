@@ -23,10 +23,10 @@ public class TProtection {
         LWCPlugin lwcPlugin = (LWCPlugin) plugin.getServer().getPluginManager().getPlugin("LWC");
         lwc = lwcPlugin.getLWC();
         lockette = (Lockette) plugin.getServer().getPluginManager().getPlugin("Lockette");
-        if (lwc != null) {
+        if (lwc != null && !TSettings.LowDetailMode) {
             TLogger.info("LWC version " + lwcPlugin.getDescription().getVersion() + " loaded.");
         }
-        if (lockette != null) {
+        if (lockette != null && !TSettings.LowDetailMode) {
             TLogger.info("Lockette version " + lockette.getDescription().getVersion() + " loaded.");
         }
     }
@@ -35,11 +35,15 @@ public class TProtection {
         String pluginName = plugin.getDescription().getName();
         if (pluginName.equals("LWC") && lwc == null) {
             lwc = ((LWCPlugin) plugin).getLWC();
-            TLogger.info("LWC version " + plugin.getDescription().getVersion() + " loaded.");
+            if (!TSettings.LowDetailMode) {
+                TLogger.info("LWC version " + plugin.getDescription().getVersion() + " loaded.");
+            }
         }
         if (pluginName.equals("Lockette") && lockette == null) {
             lockette = (Lockette) plugin;
-            TLogger.info("Lockette version " + plugin.getDescription().getVersion() + " loaded.");
+            if (!TSettings.LowDetailMode) {
+                TLogger.info("Lockette version " + plugin.getDescription().getVersion() + " loaded.");
+            }
         }
     }
 
