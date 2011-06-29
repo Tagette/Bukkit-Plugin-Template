@@ -61,6 +61,10 @@ public class TSettings {
         MySQLPass = file.getString("pass", "", "The password for the user.");
         MySQLDBName = file.getString("dbname", "", "The name of the database.");
 
-        LowDetailMode = file.getBoolean("lowDetailMode", false, "Displays less info when starting if true.");
+        if(TConstants.lowDetailAllowed){
+            LowDetailMode = file.getBoolean("lowDetailMode", false, "Displays less info when starting if true.");
+        } else {
+            LowDetailMode = false;
+        }
     }
 }

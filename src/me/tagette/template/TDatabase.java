@@ -31,7 +31,6 @@ public class TDatabase {
         
         // -- Example --
         // This will create a table with the name "players".
-        // No need to check if table or field already exists.
         String tableQuery = "CREATE TABLE players ("
                 + "id INT(11) NOT NULL DEFAULT '0',"
                 + "name VARCHAR(30),"

@@ -21,7 +21,9 @@ public class TProtection {
     public static void initialize(Template instance) {
         TProtection.plugin = instance;
         LWCPlugin lwcPlugin = (LWCPlugin) plugin.getServer().getPluginManager().getPlugin("LWC");
-        lwc = lwcPlugin.getLWC();
+        if (lwcPlugin != null) {
+            lwc = lwcPlugin.getLWC();
+        }
         lockette = (Lockette) plugin.getServer().getPluginManager().getPlugin("Lockette");
         if (lwc != null && !TSettings.LowDetailMode) {
             TLogger.info("LWC version " + lwcPlugin.getDescription().getVersion() + " loaded.");

@@ -19,7 +19,7 @@ import org.bukkit.plugin.PluginManager;
  * @author Tagette
  */
 public class Template extends JavaPlugin {
-    
+
     private final TPlayerListener playerListener = new TPlayerListener(this);
     private final TBlockListener blockListener = new TBlockListener(this);
     private final TPluginListener pluginListener = new TPluginListener(this);
@@ -47,12 +47,17 @@ public class Template extends JavaPlugin {
         pm.registerEvent(Event.Type.SIGN_CHANGE, blockListener, Priority.Low, this); // placin' sign duh
         pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener, Priority.Low, this); // Clickin' and such
 
+        // Auto-Updater
+        TUpdater.initialize(this);
+
         // Settings
         TSettings.initialize(this);
         TLanguage.initialize(this);
 
         // Database
-        TDatabase.initialize(this);
+        if (TConstants.databaseEnabled) {
+            TDatabase.initialize(this);
+        }
 
         // Supported plugins
         THelp.initialize(this);
@@ -108,11 +113,11 @@ public class Template extends JavaPlugin {
         TDatabase.disable();
         TLogger.info(name + " disabled.");
     }
-    
+
     /*
      * Checks is the plugin is in debug mode.
      */
-    public boolean inDebugMode(){
+    public boolean inDebugMode() {
         return !debugees.isEmpty() || debugging;
     }
 
@@ -130,21 +135,25 @@ public class Template extends JavaPlugin {
      * 
      * @param player    The player to set the debug mode of.
      */
-    public void startDebugging(final Player player) {
-        debugees.add(player);
+    public boolean startDebugging(final Player player) {
+        if (TConstants.debugAllowed) {
+            debugees.add(player);
+        }
+        return TConstants.debugAllowed;
     }
-    
-    public void startDebugging() {
-        debugging = true;
+
+    public boolean startDebugging() {
+        debugging = TConstants.debugAllowed;
+        return TConstants.debugAllowed;
     }
-    
+
     public void stopDebugging(final Player player) {
         debugees.remove(player);
     }
-    
-    public void stopDebugging() {
-        for(Player player : debugees) {
-            player.sendMessage("You are no longer in debug mode.");
+
+    public void stopDebugging(String displayMessage) {
+        for (Player player : debugees) {
+            player.sendMessage(displayMessage);
         }
         debugees.clear();
         debugging = false;

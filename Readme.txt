@@ -7,12 +7,16 @@ Setup:
 6) Add all the .jar files from the lib folder into the libraries of the project.
 7) Build and test? YAY!
 
+For more info on the AutoUpdater go to:
+http://forums.bukkit.org/threads/auto-updater-library-check-versions-give-reasons-update-urgency-and-force-updates.21209/
+
 Credits:
 Read credits.txt
 
 ChangeLog:
-* June 18 - Updated Libraries and added LowDetailMode
-* June 2 - More minor code changes.
+* June 29 - Added Auto-Updater and Plugin Constants. (1.1.3)
+* June 18 - Updated Libraries and added LowDetailMode. (1.1.2)
+* June 2 - More minor code changes. (1.1.1)
 * June 2 - Updated example commands. (1.1.1) [Added support for console commands]
 * June 2 - Removed Simplified Database (1.1.1) [Didn't actually simplify]
 * May 28 - Added plugin debug mode command. (Currently only debugs SQL) (1.1.0)

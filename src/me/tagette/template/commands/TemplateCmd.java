@@ -155,8 +155,8 @@ public class TemplateCmd implements CommandExecutor {
                                 plugin.stopDebugging(getPlayer(sender));
                                 sendMessage(sender, "You have exited debug mode for " + colorizeText(Template.name, ChatColor.GREEN) + ".");
                             } else {
-                                plugin.startDebugging(getPlayer(sender));
-                                sendMessage(sender, "You have entered debug mode for " + colorizeText(Template.name, ChatColor.GREEN) + ".");
+                                if(plugin.startDebugging(getPlayer(sender)))
+                                    sendMessage(sender, "You have entered debug mode for " + colorizeText(Template.name, ChatColor.GREEN) + ".");
                             }
                             if (plugin.inDebugMode()) {
                                 TLogger.info("Debug mode initiated.");
@@ -170,7 +170,7 @@ public class TemplateCmd implements CommandExecutor {
                         }
                     } else {
                         if (plugin.inDebugMode()) {
-                            plugin.stopDebugging();
+                            plugin.stopDebugging("You have exited debug mode for " + colorizeText(Template.name, ChatColor.GREEN) + ".");
                             TLogger.info("Debug mode terminated.");
                         } else {
                             plugin.startDebugging();
