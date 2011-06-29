@@ -19,7 +19,7 @@ public class TProtection {
     private static Template plugin;
 
     public static void initialize(Template instance) {
-        TProtection.plugin = instance;
+        plugin = instance;
         LWCPlugin lwcPlugin = (LWCPlugin) plugin.getServer().getPluginManager().getPlugin("LWC");
         if (lwcPlugin != null) {
             lwc = lwcPlugin.getLWC();
@@ -88,6 +88,7 @@ public class TProtection {
         if (lwc != null) {
             lwc.getPhysicalDatabase().registerProtection(block.getTypeId(), ProtectionTypes.PRIVATE, block.getWorld().getName(), name, "", block.getX(), block.getY(), block.getZ());
             protect = true;
+            plugin.debug(block.getType().name() + " block protected for " + name + ". (" + block.getX() + ", " + block.getY() + ", " + block.getZ() + ")");
         }
         return protect;
     }

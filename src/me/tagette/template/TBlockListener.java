@@ -1,5 +1,6 @@
 package me.tagette.template;
 
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.SignChangeEvent;
@@ -18,7 +19,9 @@ public class TBlockListener extends BlockListener {
 
     @Override
     public void onSignChange(SignChangeEvent event) {
+        Block sign = event.getBlock();
         Player player = event.getPlayer();
+        plugin.debug(player.getName() + " placed a sign. (" + sign.getX() + ", " + sign.getY() + ", " + sign.getZ() + ")");
     }
     
 //    public void onBlockDamage(BlockDamageEvent event) {

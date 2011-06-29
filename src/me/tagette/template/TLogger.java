@@ -11,10 +11,12 @@ public class TLogger {
 
     private static Logger log;
     private static String prefix;
+    private static Template plugin;
 
-    public static void initialize(Logger newLog) {
+    public static void initialize(Template instance, Logger newLog) {
+        plugin = instance;
         TLogger.log = newLog;
-        prefix = "[" + Template.name + "] ";
+        prefix = "[" + plugin.name + "] ";
     }
 
     public static Logger getLog() {

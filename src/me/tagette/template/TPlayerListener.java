@@ -1,6 +1,7 @@
 package me.tagette.template;
 
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
@@ -21,6 +22,8 @@ public class TPlayerListener extends PlayerListener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = event.getClickedBlock();
+            Player player = event.getPlayer();
+            plugin.debug(player.getName() + " right-clicked a " + block.getType().name() + " block. (" + block.getX() + ", " + block.getY() + ", " + block.getZ() + ")");
         }
     }
 //    public void onPlayerJoin(PlayerJoinEvent event) {

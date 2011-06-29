@@ -28,7 +28,7 @@ public class DataManager {
                     TSettings.MySQLUser, TSettings.MySQLPass, TSettings.MySQLDBName);
         } else if (mode == SQLMode.SQLite) {
             dbCore = new SQLCore(TLogger.getLog(), TLogger.getPrefix(),
-                    plugin.getDataFolder().getPath() + "/Data", Template.name);
+                    plugin.getDataFolder().getPath() + "/Data", plugin.name);
         }
         if (dbCore.initialize() && !TSettings.LowDetailMode) {
             TLogger.info("Database connection established.");
@@ -66,30 +66,22 @@ public class DataManager {
     }
 
     public boolean execute(String query) {
-        if (plugin.inDebugMode()) {
-            TLogger.info("Database.execute Query: \"" + query + "\"");
-        }
+        plugin.debug("Database.execute Query: \"" + query + "\"");
         return dbCore.createTable(query);
     }
 
     public boolean update(String query) {
-        if (plugin.inDebugMode()) {
-            TLogger.info("Database.update Query: \"" + query + "\"");
-        }
+        plugin.debug("Database.update Query: \"" + query + "\"");
         return dbCore.updateQuery(query);
     }
 
     public boolean insert(String query) {
-        if (plugin.inDebugMode()) {
-            TLogger.info("Database.insert Query: \"" + query + "\"");
-        }
+        plugin.debug("Database.insert Query: \"" + query + "\"");
         return dbCore.insertQuery(query);
     }
 
     public ResultSet query(String query) {
-        if (plugin.inDebugMode()) {
-            TLogger.info("Database.query Query: \"" + query + "\"");
-        }
+        plugin.debug("Database.query Query: \"" + query + "\"");
         return dbCore.sqlQuery(query);
     }
 

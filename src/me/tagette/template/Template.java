@@ -3,6 +3,7 @@ package me.tagette.template;
 import java.util.ArrayList;
 import me.tagette.template.extras.CommandManager;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import me.tagette.template.commands.*;
 import org.bukkit.command.Command;
@@ -25,9 +26,9 @@ public class Template extends JavaPlugin {
     private final TPluginListener pluginListener = new TPluginListener(this);
     private final CommandManager commandManager = new CommandManager(this);
     private final List<Player> debugees = new ArrayList<Player>();
-    public static String name;
-    public static String version;
-    private static boolean debugging;
+    public String name;
+    public String version;
+    private boolean debugging;
 
     /*
      * This method runs when the plugin is enabled.
@@ -36,16 +37,17 @@ public class Template extends JavaPlugin {
     public void onEnable() {
         name = this.getDescription().getName();
         version = this.getDescription().getVersion();
+        debugging = false;
 
         // Logger
-        TLogger.initialize(Logger.getLogger("Minecraft"));
+        TLogger.initialize(this, Logger.getLogger("Minecraft"));
 
         PluginManager pm = getServer().getPluginManager();
         // Makes sure all plugins are correctly loaded.
         pm.registerEvent(Event.Type.PLUGIN_ENABLE, pluginListener, Priority.Monitor, this);
+
         // Register our events
-        pm.registerEvent(Event.Type.SIGN_CHANGE, blockListener, Priority.Low, this); // placin' sign duh
-        pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener, Priority.Low, this); // Clickin' and such
+        pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Low, this);
 
         // Auto-Updater
         TUpdater.initialize(this);
@@ -77,7 +79,7 @@ public class Template extends JavaPlugin {
     private void setupCommands() {
         // Add command labels here.
         // For example in "/template version" and "/template reload" the label for both is "template".
-        // Make your commands in the template.commands package. Each command is a seperate class.
+        // Make your commands in the me.tagette.template.commands package. Each command is a seperate class.
         addCommand("template", new TemplateCmd(this));
     }
 
@@ -151,11 +153,20 @@ public class Template extends JavaPlugin {
         debugees.remove(player);
     }
 
-    public void stopDebugging(String displayMessage) {
+    public void stopDebugging(String message) {
         for (Player player : debugees) {
-            player.sendMessage(displayMessage);
+            player.sendMessage(message);
         }
         debugees.clear();
         debugging = false;
+    }
+
+    public void debug(String message) {
+        if (inDebugMode()) {
+            TLogger.info(message);
+            for (Player player : debugees) {
+                player.sendMessage(message);
+            }
+        }
     }
 }

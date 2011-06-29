@@ -65,7 +65,7 @@ public class TPermissions {
         }
     }
 
-    public static boolean permission(Player player, String permission, boolean defaultPerm) {
+    public static boolean has(Player player, String permission, boolean defaultPerm) {
         switch (handler) {
             case PERMISSIONS:
                 return ((Permissions) PermissionPlugin).getHandler().has(player, permission);
@@ -79,6 +79,6 @@ public class TPermissions {
     }
 
     public static boolean isAdmin(Player player) {
-        return permission(player, "template.admin", player.isOp());
+        return has(player, plugin.name + ".admin", player.isOp());
     }
 }

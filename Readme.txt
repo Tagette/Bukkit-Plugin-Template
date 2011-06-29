@@ -14,6 +14,7 @@ Credits:
 Read credits.txt
 
 ChangeLog:
+* June 29 - Tidied up code, enhanced the debug system and the command system. (1.1.4)
 * June 29 - Added Auto-Updater and Plugin Constants. (1.1.3)
 * June 18 - Updated Libraries and added LowDetailMode. (1.1.2)
 * June 2 - More minor code changes. (1.1.1)
