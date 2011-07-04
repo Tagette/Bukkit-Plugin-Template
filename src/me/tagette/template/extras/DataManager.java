@@ -3,6 +3,7 @@ package me.tagette.template.extras;
 import com.alta189.sqlLibrary.SQL.SQLCore;
 import com.alta189.sqlLibrary.SQL.SQLCore.SQLMode;
 import java.sql.ResultSet;
+import me.tagette.template.TDebug;
 import me.tagette.template.TLogger;
 import me.tagette.template.TSettings;
 import me.tagette.template.Template;
@@ -66,22 +67,22 @@ public class DataManager {
     }
 
     public boolean execute(String query) {
-        plugin.debug("Database.execute Query: \"" + query + "\"");
+        TDebug.debug(DebugDetailLevel.NORMAL, "Database.execute Query: \"" + query + "\"");
         return dbCore.createTable(query);
     }
 
     public boolean update(String query) {
-        plugin.debug("Database.update Query: \"" + query + "\"");
+        TDebug.debug(DebugDetailLevel.NORMAL, "Database.update Query: \"" + query + "\"");
         return dbCore.updateQuery(query);
     }
 
     public boolean insert(String query) {
-        plugin.debug("Database.insert Query: \"" + query + "\"");
+        TDebug.debug(DebugDetailLevel.NORMAL, "Database.insert Query: \"" + query + "\"");
         return dbCore.insertQuery(query);
     }
 
     public ResultSet query(String query) {
-        plugin.debug("Database.query Query: \"" + query + "\"");
+        TDebug.debug(DebugDetailLevel.NORMAL, "Database.query Query: \"" + query + "\"");
         return dbCore.sqlQuery(query);
     }
 

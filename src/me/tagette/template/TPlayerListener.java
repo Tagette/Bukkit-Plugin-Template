@@ -1,5 +1,6 @@
 package me.tagette.template;
 
+import me.tagette.template.extras.DebugDetailLevel;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -23,7 +24,7 @@ public class TPlayerListener extends PlayerListener {
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = event.getClickedBlock();
             Player player = event.getPlayer();
-            plugin.debug(player.getName() + " right-clicked a " + block.getType().name() + " block. (" + block.getX() + ", " + block.getY() + ", " + block.getZ() + ")");
+            TDebug.debug(DebugDetailLevel.EVERYTHING, player.getName() + " right-clicked a " + block.getType().name() + " block. (" + block.getX() + ", " + block.getY() + ", " + block.getZ() + ")");
         }
     }
 //    public void onPlayerJoin(PlayerJoinEvent event) {

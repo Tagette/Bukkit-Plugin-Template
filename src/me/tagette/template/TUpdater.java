@@ -1,6 +1,6 @@
 package me.tagette.template;
 
-import couk.Adamki11s.AutoUpdater.AUCore;
+import com.couk.Adamki11s.AutoUpdater.AUCore;
 
 /**
  * @description Handles automatic updating for the plugin.

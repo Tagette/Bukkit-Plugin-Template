@@ -4,6 +4,7 @@ import me.tagette.template.extras.PropertiesFile;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import org.bukkit.ChatColor;
 
 /**
  * @description Handles the language used in the plugin
@@ -53,6 +54,16 @@ public class TLanguage {
     }
 
     public static String getLanguage(String key) {
-        return languages.get(key);
+        return parseColors(languages.get(key));
+    }
+
+    public static String parseColors(String message) {
+        if (message != null) {
+            for (ChatColor color : ChatColor.values()) {
+                message = message.replaceAll("&" + color.name().toLowerCase(), color.toString());
+            }
+            message = message.replaceAll("&default", ChatColor.WHITE.toString());
+        }
+        return message;
     }
 }

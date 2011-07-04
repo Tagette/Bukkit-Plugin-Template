@@ -4,6 +4,7 @@ import com.griefcraft.lwc.LWC;
 import com.griefcraft.lwc.LWCPlugin;
 import com.griefcraft.model.Protection;
 import com.griefcraft.model.ProtectionTypes;
+import me.tagette.template.extras.DebugDetailLevel;
 import org.bukkit.block.Block;
 import org.bukkit.plugin.Plugin;
 import org.yi.acru.bukkit.Lockette.Lockette;
@@ -88,7 +89,7 @@ public class TProtection {
         if (lwc != null) {
             lwc.getPhysicalDatabase().registerProtection(block.getTypeId(), ProtectionTypes.PRIVATE, block.getWorld().getName(), name, "", block.getX(), block.getY(), block.getZ());
             protect = true;
-            plugin.debug(block.getType().name() + " block protected for " + name + ". (" + block.getX() + ", " + block.getY() + ", " + block.getZ() + ")");
+            TDebug.debug(DebugDetailLevel.EVERYTHING, block.getType().name() + " block protected for " + name + ". (" + block.getX() + ", " + block.getY() + ", " + block.getZ() + ")");
         }
         return protect;
     }

@@ -25,10 +25,8 @@ public class Template extends JavaPlugin {
     private final TBlockListener blockListener = new TBlockListener(this);
     private final TPluginListener pluginListener = new TPluginListener(this);
     private final CommandManager commandManager = new CommandManager(this);
-    private final List<Player> debugees = new ArrayList<Player>();
     public String name;
     public String version;
-    private boolean debugging;
 
     /*
      * This method runs when the plugin is enabled.
@@ -37,10 +35,6 @@ public class Template extends JavaPlugin {
     public void onEnable() {
         name = this.getDescription().getName();
         version = this.getDescription().getVersion();
-        debugging = false;
-
-        // Logger
-        TLogger.initialize(this, Logger.getLogger("Minecraft"));
 
         PluginManager pm = getServer().getPluginManager();
         // Makes sure all plugins are correctly loaded.
@@ -49,12 +43,18 @@ public class Template extends JavaPlugin {
         // Register our events
         pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Low, this);
 
-        // Auto-Updater
-        TUpdater.initialize(this);
+        // Logger
+        TLogger.initialize(this, Logger.getLogger("Minecraft"));
 
         // Settings
         TSettings.initialize(this);
         TLanguage.initialize(this);
+
+        // Debugger
+        TDebug.initialize(this);
+
+        // Auto-Updater
+        TUpdater.initialize(this);
 
         // Database
         if (TConstants.databaseEnabled) {
@@ -71,6 +71,17 @@ public class Template extends JavaPlugin {
         setupCommands();
 
         TLogger.info(name + " version " + version + " is enabled!");
+    }
+
+    /*
+     * This method runs when the plugin is disabling.
+     */
+    @Override
+    public void onDisable() {
+        if (TConstants.databaseEnabled) {
+            TDatabase.disable();
+        }
+        TLogger.info(name + " disabled.");
     }
 
     /*
@@ -105,68 +116,5 @@ public class Template extends JavaPlugin {
     private void addCommand(String command, CommandExecutor executor) {
         getCommand(command).setExecutor(executor);
         commandManager.addCommand(command, executor);
-    }
-
-    /*
-     * This method runs when the plugin is disabling.
-     */
-    @Override
-    public void onDisable() {
-        TDatabase.disable();
-        TLogger.info(name + " disabled.");
-    }
-
-    /*
-     * Checks is the plugin is in debug mode.
-     */
-    public boolean inDebugMode() {
-        return !debugees.isEmpty() || debugging;
-    }
-
-    /*
-     * Checks if a player is in debug mode.
-     * 
-     * @param player    The player to check.
-     */
-    public boolean isDebugging(final Player player) {
-        return debugees.contains(player);
-    }
-
-    /*
-     * Sets a players debug mode.
-     * 
-     * @param player    The player to set the debug mode of.
-     */
-    public boolean startDebugging(final Player player) {
-        if (TConstants.debugAllowed) {
-            debugees.add(player);
-        }
-        return TConstants.debugAllowed;
-    }
-
-    public boolean startDebugging() {
-        debugging = TConstants.debugAllowed;
-        return TConstants.debugAllowed;
-    }
-
-    public void stopDebugging(final Player player) {
-        debugees.remove(player);
-    }
-
-    public void stopDebugging(String message) {
-        for (Player player : debugees) {
-            player.sendMessage(message);
-        }
-        debugees.clear();
-        debugging = false;
-    }
-
-    public void debug(String message) {
-        if (inDebugMode()) {
-            TLogger.info(message);
-            for (Player player : debugees) {
-                player.sendMessage(message);
-            }
-        }
     }
 }

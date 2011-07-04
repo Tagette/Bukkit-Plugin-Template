@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import me.tagette.template.*;
 import me.tagette.template.extras.DataManager;
+import me.tagette.template.extras.DebugDetailLevel;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -155,7 +156,7 @@ public class TemplateCmd implements CommandExecutor {
                 sendMessage("Unknown " + plugin.name + " command: /" + label + " " + TTools.join(args, " "));
                 sendLog("Unknown " + plugin.name + " command: " + label + " " + TTools.join(args, " "));
                 if (isPlayer()) {
-                    plugin.debug(getName() + " tried to enter an incorrect command: " + label + " " + TTools.join(args, " "));
+                    TDebug.debug(DebugDetailLevel.EVERYTHING, getName() + " tried to enter an incorrect command: " + label + " " + TTools.join(args, " "));
                 }
             }
         } else {
@@ -179,6 +180,16 @@ public class TemplateCmd implements CommandExecutor {
         boolean sent = false;
         if (isPlayer()) {
             getPlayer().sendMessage(message);
+            sent = true;
+        }
+        return sent;
+    }
+
+    // Sends a message to a player.
+    private boolean sendMessage(Player player, String message) {
+        boolean sent = false;
+        if (message != null && !message.equals("")) {
+            player.sendMessage(message);
             sent = true;
         }
         return sent;
@@ -223,15 +234,15 @@ public class TemplateCmd implements CommandExecutor {
             if (isPlayer()) {
                 if (TPermissions.isAdmin(getPlayer())) {
                     // Toggles debug mode for player.
-                    if (plugin.isDebugging(getPlayer())) {
-                        plugin.stopDebugging(getPlayer());
+                    if (TDebug.isDebugging(getPlayer())) {
+                        TDebug.stopDebugging(getPlayer());
                         sendMessage("You have exited debug mode for " + colorizeText(plugin.name, ChatColor.GREEN) + ".");
                     } else {
-                        if (plugin.startDebugging(getPlayer())) {
+                        if (TDebug.startDebugging(getPlayer())) {
                             sendMessage("You have entered debug mode for " + colorizeText(plugin.name, ChatColor.GREEN) + ".");
                         }
                     }
-                    if (plugin.inDebugMode()) {
+                    if (TDebug.inDebugMode()) {
                         TLogger.info("Debug mode initiated.");
                         sendMessage(colorizeText(plugin.name, ChatColor.GREEN) + " has begun debugging.");
                     } else {
@@ -242,11 +253,11 @@ public class TemplateCmd implements CommandExecutor {
                     sendMessage(TLanguage.getLanguage("noPermissions"));
                 }
             } else {
-                if (plugin.inDebugMode()) {
-                    plugin.stopDebugging("You have exited debug mode for " + colorizeText(plugin.name, ChatColor.GREEN) + ".");
+                if (TDebug.inDebugMode()) {
+                    TDebug.stopDebugging("You have exited debug mode for " + colorizeText(plugin.name, ChatColor.GREEN) + ".");
                     TLogger.info("Debug mode terminated.");
                 } else {
-                    plugin.startDebugging();
+                    TDebug.startDebugging();
                     TLogger.info("Debug mode initiated.");
                 }
             }

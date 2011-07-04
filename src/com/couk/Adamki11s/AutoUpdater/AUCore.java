@@ -22,7 +22,7 @@
  *    Please contact adam@adamki11s.co.uk
  */
 
-package couk.Adamki11s.AutoUpdater;
+package com.couk.Adamki11s.AutoUpdater;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

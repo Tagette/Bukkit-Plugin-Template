@@ -42,6 +42,8 @@ public class TDatabase {
         // An example on how to get and set data in the database
         //   using the DataManager is in the TemplateCmd Class
         //   under me.tagette.template.commands
+        
+        // For help with SQL go to: http://www.w3schools.com/sql
     }
     
     /*
